@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: es
+  name: es-client-config
+  labels:
+    app: elasticsearch
+    role: client
+data:
+  elasticsearch.yml: |-
+    cluster.name: ${CLUSTER_NAME}
+    node.name: ${NODE_NAME}
+    discovery.seed_hosts: ${NODE_LIST}
+    cluster.initial_master_nodes: ${MASTER_NODES}
+    network.host: 0.0.0.0
+    node:
+      master: false
+      data: false
+      ingest: true
+
+    xpack.security.enabled: true
+    xpack.monitoring.collection.enabled: true
