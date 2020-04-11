@@ -23,7 +23,7 @@ This project was created to allow hands on lab work to stand up a secure Elastic
 <a name="prereqs"/>
 
 ## Prerequisites
-- Kubernetes cluster running version 1.15 or greater
+- Kubernetes local cluster on docker-desktop or minikube running version 1.15 or greater
 - Knowledge of Kubernetes and its object types like StatefulSets, DaemonSet, PersistentVolumes & init container
 - Basic knowledge of Elasticsearch and Kibana
 - Basic knowledge of Elasticsearch Node types and their roles (Master, Data & client nodes)
@@ -48,7 +48,7 @@ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/relea
 kubectl get all -n cert-manager
 ```
 
-SCREENSHOT
+![cert-manager](./screenshots/cert-manager.png)
 
 **3. Create the `es` Namespace**<br>
 This namespace will be used for all the rest of the k8s objects in this example
@@ -77,13 +77,13 @@ kubectl apply -f certs.yaml
 kubectl get certificates -n es
 ```
 
-SCREENSHOT
+![certs](./screenshots/certs.png)
 
 ```
 kubectl get secretes -n es
 ```
 
-SCREENSHOT
+![certs-secretes](./screenshots/certs-secrets.png)
 
 <a name="deploy-es"/>
 
@@ -102,7 +102,7 @@ kubectl apply -f es-master.yaml
 kubectl get all -n es
 ```
 
-SCREENSHOT
+![es-master](./screenshots/es-master.png)
 
 **3. Deploy the Data Node ConfigMap, Deployment, and Service**<br>
 The `es-data.yaml` manifest will deploy a ConfigMap with that contains the settings for the data node with xpack.security enabled, the es-data node deployment, and the es-data service. 
@@ -117,7 +117,7 @@ kubectl apply -f es-data.yaml
 kubectl get all -n es
 ```
 
-SCREENSHOT
+![es-data](./screenshots/es-data.png)
 
 **5. Deploy the Client Node ConfigMap**<br>
 The `es-client-configmap.yaml` contains the setting to for the client node with xpack.security enabled.  Note that we will be enabling SSL in a later step. 
@@ -138,7 +138,7 @@ kubectl apply -f es-client.yaml
 kubectl get all -n es
 ```
 
-SCREENSHOT
+![es-client](./screenshots/es-client.png)
 
 **8. Verify the Health of Elasticsearch**<br>
 After a few minutes, the nodes should reconcile and the master node log file will contain the following: `"Cluster health status changed from [YELLOW] to [GREEN]"`
@@ -154,7 +154,7 @@ With the xpack security module enabled, we can run a command on the `es-client` 
 kubectl exec -it $(kubectl get pods -n es | grep es-client | sed -n 1p | awk '{print $1}') -n es -- bin/elasticsearch-setup-passwords auto -b
 ```
 
-SCREENSHOT
+![es-passwords](./screenshots/es-passwords.png)
 
 **10. Create the elastic user password secret**<br> 
 Copy the `elastic` user password from step 9 and replace the password in the following command with the one that was generated.  You will want to save this password to log into Kibana for the first time. 
@@ -180,7 +180,7 @@ kubectl rollout restart deployment.app/es-client -n es
 kubectl get all -n es
 ```
 
-SCREENSHOT
+![es-final](./screenshots/es-final.png)
 
 If all went well, you now have an Elasticsearch cluster running that is protected with the xpack security module and SSL enabled.
 
@@ -203,7 +203,7 @@ kubectl apply -f kibana.yaml
 kubectl get all -n es
 ```
 
-SCREENSHOT
+![kibana](./screenshots/kibana.png)
 
 **3. Get the `kibana-svc` NodePort port**
 
@@ -211,12 +211,12 @@ SCREENSHOT
 kubectl get service kibana-svc -o wide -n es
 ```
 
-SCREENSHOT 
+![kibana-nodeport](./screenshots/kibana-nodeport.png)
 
 **4. Launch a web browser and go to `https://localhost:<KibanaNodePort>`**<br>
 It takes a few minutes for Kibana to startup after the pod is running.  Because we used a self-signed cert you will need to acknowlegde that the cert cannot be verified and proceed to the site.  
 
-SCREENSHOT
+![kibana-webpage](./screenshots/kibana-webpage.png)
 
 <a name="closing-remarks"/>
 
@@ -224,7 +224,7 @@ SCREENSHOT
 - If all went well, you should have a secure Elasticstack with Kibana up and running locally and more importantly learned some fundamentals that you can use. 
 - Take a look at the ConfigMap and Deployment in the `kibana.yaml` manifest.  You can use a similar configuration to run any of the Beats modules or Logstash securely. 
 - Avoid exposing the Elasticsearch client to the internet.
-- Your Elasticsearch cluster is only as secure as your k8s cluster even with all of the above.
+- Your Elasticsearch cluster is only as secure as your k8s cluster, even with all of the above.
 - [Enable Kibana RBAC](https://www.elastic.co/guide/en/kibana/current/development-security-rbac.html) and setup appropriate user permissions.
 - Interested in containerizing and modernizing your applications?  [Contact us today for a free one hour consultation to find out how our C2 Labs DevOps engineers can accelerate your digital transformation.](https://www.c2labs.com/contact-us)
 
