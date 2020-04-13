@@ -80,7 +80,7 @@ kubectl get certificates -n es
 ![certs](./screenshots/certs.png)
 
 ```
-kubectl get secretes -n es
+kubectl get secrets -n es
 ```
 
 ![certs-secretes](./screenshots/certs-secrets.png)
