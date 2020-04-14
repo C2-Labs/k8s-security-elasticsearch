@@ -226,7 +226,7 @@ It takes a few minutes for Kibana to startup after the pod is running.  Because 
 - Avoid exposing the Elasticsearch client to the internet.
 - Your Elasticsearch cluster is only as secure as your k8s cluster, even with all of the above.
 - [Enable Kibana RBAC](https://www.elastic.co/guide/en/kibana/current/development-security-rbac.html) and setup appropriate user permissions.
-- Interested in containerizing and modernizing your applications?  [Contact us today for a free one hour consultation to find out how our C2 Labs DevOps engineers can accelerate your digital transformation.](https://www.c2labs.com/contact-us)
+- Are you struggling to secure your Elasticsearch or Kubernetes environment?  Don't know where to start?  Let the experts at C2 Labs help you by [scheduling your free one hour consultation today](https://outlook.office365.com/owa/calendar/C2Labs1@c2labs.com/bookings/).
 
 
 
