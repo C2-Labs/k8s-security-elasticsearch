@@ -174,7 +174,7 @@ kubectl apply -f es-client-configmap-ssl.yaml
 kubectl rollout restart deployment.app/es-client -n es
 ```
 
-**12. Verify the everything is up and running**<br>
+**12. Verify that everything is up and running**<br>
 
 ```
 kubectl get all -n es
