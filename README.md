@@ -132,7 +132,7 @@ kubectl apply -f es-client-configmap.yaml
 kubectl apply -f es-client.yaml
 ```
 
-**7. Verify the everything is up and running**
+**7. Verify that everything is up and running**
 
 ```
 kubectl get all -n es
