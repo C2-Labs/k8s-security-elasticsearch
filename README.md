@@ -1,6 +1,6 @@
 # k8s-security-elasticsearch
 
-This project was created to allow hands on lab work to stand up a secure Elasticsearch and Kibana on a Kubernetes cluster.  It is designed to provide a working example of Elasticsearch security best practices when deploying to K8S.  Check out our blog post [here](https://www.c2labs.com/news) on why this matters!
+This project was created to allow hands on lab work to stand up a secure Elasticsearch and Kibana on a Kubernetes cluster.  It is designed to provide a working example of Elasticsearch security best practices when deploying to K8S.  Check out our blog post [here](https://www.c2labs.com/post/top-6-best-practices-for-securing-elasticsearch-in-kubernetes-hands-on-lab) on why this matters!
 
 ## Table of Contents
 
